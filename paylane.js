@@ -34,7 +34,7 @@ var routeConfig = {
 	"refunds": null,
 	"authorizations": ["capture", "close"],
 	"resales": ["sale", "authorization"],
-	"sales": ["status"],
+	"sales": ["status", "info"],
 	"threedsecure": ["checkCard", "checkCardByToken", "authSale"],
 	"setCredentials": setCredentials
 }
