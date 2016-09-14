@@ -1,12 +1,12 @@
 {
   "name": "paylane",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Paylane REST client for node.js",
   "main": "paylane.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "trygve@grimnes.org",
+  "author": "worotyns@softhogs.com",
   "license": "ISC",
   "dependencies": {
     "request": "^2.49.0"
@@ -16,6 +16,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/trgr/node-paylane.git"
+    "url": "git://github.com/softhogs/node-paylane.git"
   }
 }

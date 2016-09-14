@@ -30,11 +30,11 @@ var routeConfig = {
 	"paypal" : [	"sale", "authorization", "stopRecurring"],
 	"directdebits" : [ "sale" ],
 	"sofort" : [ "sale" ],
+	"banktransfers" : [ "sale" ],
 	"refunds" : null,
 	"authorizations" : [ "capture" , "close" ],
 	"resales" : [ "sale" , "authorization" ],
 	"threedsecure" : [ "checkCard" , "checkCardByToken" , "authSale"],
-	
 	"setCredentials" : setCredentials
 }
 
