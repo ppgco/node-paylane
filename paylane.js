@@ -1,7 +1,7 @@
 "use strict"
 
-var util = require( 'util' )
-var request = require( 'request' )
+var util = require('util')
+var request = require('request')
 
 var PAYLANE_URL = "https://%s:%s@direct.paylane.com/rest/%s"
 
@@ -20,58 +20,59 @@ var password = null
  * This module can then be used like: paylane.cards.saleByToken( params, function( err , success ) {} )
  */
 
-var setCredentials = function( user , pass){
+var setCredentials = function (user, pass) {
 	username = user
 	password = pass
 }
 
 var routeConfig = {
-	"cards" : [ "saleByToken" , "authorizationByToken" , "authorization", "generateToken", "check", "checkByToken" ],
-	"paypal" : [	"sale", "authorization", "stopRecurring"],
-	"directdebits" : [ "sale" ],
-	"sofort" : [ "sale" ],
-	"banktransfers" : [ "sale" ],
-	"refunds" : null,
-	"authorizations" : [ "capture" , "close" ],
-	"resales" : [ "sale" , "authorization" ],
-	"threedsecure" : [ "checkCard" , "checkCardByToken" , "authSale"],
-	"setCredentials" : setCredentials
+	"cards": ["saleByToken", "authorizationByToken", "authorization", "generateToken", "check", "checkByToken"],
+	"paypal": ["sale", "authorization", "stopRecurring"],
+	"directdebits": ["sale"],
+	"sofort": ["sale"],
+	"banktransfers": ["sale"],
+	"refunds": null,
+	"authorizations": ["capture", "close"],
+	"resales": ["sale", "authorization"],
+	"sales": ["status"],
+	"threedsecure": ["checkCard", "checkCardByToken", "authSale"],
+	"setCredentials": setCredentials
 }
 
 
 
-function send( options , callback ){
-	request( options, function( err , response, body ){
-		callback( err , body )
-	})	
+function send(options, callback) {
+	request(options, function (err, response, body) {
+		callback(err, body)
+	})
 }
 
-function createRoute( pathArray ){
-	return function( paylaneParameters , callback ){
+function createRoute(pathArray) {
+	return function (paylaneParameters, callback) {
 
 		var route = pathArray.join("/")
 		var options = {
-			url : util.format(PAYLANE_URL, username , password , route ),
-			method : 'post',
-			json : true,
-			body : paylaneParameters			
+			url: util.format(PAYLANE_URL, username, password, route),
+			method: 'post',
+			json: true,
+			body: paylaneParameters
 		}
-		send( options , callback )
+		send(options, callback)
 	}
 }
 
 var routes = {}
 
-Object.keys( routeConfig).forEach(function( resource ){
-	if( routeConfig[resource] == null){
-		routes[resource] = createRoute( [ resource ] )
-	}else if( typeof( routeConfig[resource] ) == "function" ){
+Object.keys(routeConfig).forEach(function (resource) {
+	if (routeConfig[resource] == null) {
+		routes[resource] = createRoute([resource])
+	} else if (typeof (routeConfig[resource]) == "function") {
 		routes[resource] = routeConfig[resource]
-	}else{
-		routes[resource] = routeConfig[resource].reduce(function( last , current , index , array ){
-			last[current] = createRoute( [ resource , current ] )
+	} else {
+		routes[resource] = routeConfig[resource].reduce(function (last, current, index, array) {
+			last[current] = createRoute([resource, current])
 			return last
-		},{})
+		}, {})
 	}
 })
 
