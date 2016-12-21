@@ -26,7 +26,7 @@ var setCredentials = function (user, pass) {
 }
 
 var routeConfig = {
-	"cards": ["saleByToken", "authorizationByToken", "authorization", "generateToken", "check", "checkByToken"],
+	"cards": ["sale","saleByToken", "authorizationByToken", "authorization", "generateToken", "check", "checkByToken"],
 	"paypal": ["sale", "authorization", "stopRecurring"],
 	"directdebits": ["sale"],
 	"sofort": ["sale"],
@@ -38,8 +38,6 @@ var routeConfig = {
 	"threedsecure": ["checkCard", "checkCardByToken", "authSale"],
 	"setCredentials": setCredentials
 }
-
-
 
 function send(options, callback) {
 	request(options, function (err, response, body) {
