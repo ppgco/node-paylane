@@ -8,7 +8,7 @@ var PAYLANE_URL = "https://%s:%s@direct.paylane.com/rest/%s"
 var username = null
 var password = null
 
-/* 
+/*
  * The following config is transformed into an object which is then exported as this module.
  * If the hash element is an array, the array will be transformed to an object where each element becomes a key potinting to a function of the same name on the paylane webservice.
  * If the hash element is null, then it will point to a function of the same name on the paylane webservice.
@@ -16,7 +16,7 @@ var password = null
  *
  * The functions generated take two parameters, a paylane configuration object, and a callback.
  * The callback is a function with the standard error first function( err, succes)
- * 
+ *
  * This module can then be used like: paylane.cards.saleByToken( params, function( err , success ) {} )
  */
 
@@ -26,8 +26,8 @@ var setCredentials = function (user, pass) {
 }
 
 var routeConfig = {
-	"cards": ["sale","saleByToken", "authorizationByToken", "authorization", "generateToken", "check", "checkByToken"],
-	"paypal": ["sale", "authorization", "stopRecurring"],
+	"cards": ["sale", "resaleBySale", "saleByToken", "authorizationByToken", "resaleByAuthorization", "authorization", "generateToken", "check", "checkByToken"],
+	"paypal": ["sale", "authorization", "stopRecurring", "resaleBySale"],
 	"directdebits": ["sale"],
 	"sofort": ["sale"],
 	"banktransfers": ["sale"],
