@@ -26,6 +26,7 @@ var setCredentials = function (user, pass) {
 }
 
 var routeConfig = {
+	"3DSecure": ["checkCard", "checkCardByToken", "authSale", "auth"],
 	"cards": ["sale", "resaleBySale", "saleByToken", "authorizationByToken", "resaleByAuthorization", "authorization", "generateToken", "check", "checkByToken"],
 	"paypal": ["sale", "authorization", "stopRecurring", "resaleBySale"],
 	"directdebits": ["sale"],
